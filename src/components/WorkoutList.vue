@@ -31,7 +31,7 @@ const removeExercise = (index) => {
         </li>
       </ul>
     </section>
-  </template>
+</template>
 
 <style scoped>
 section, form, input {

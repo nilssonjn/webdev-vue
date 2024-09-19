@@ -1,14 +1,9 @@
 <script setup>
-import WorkoutList from '@/components/WorkoutList.vue';
+import Navbar from './components/Navbar.vue';
+import { RouterView } from 'vue-router';
 </script>
 
 <template>
-    <div id="app">
-      <header>
-        <h1>Gym Workout Schedule</h1>
-      </header>
-      <main>
-        <WorkoutList />
-      </main>
-    </div>
-  </template>
+  <Navbar />
+  <RouterView />
+</template>

@@ -23,4 +23,12 @@ const isActiveLink = (routePath) => {
     text-align: center;
   }
 
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1rem;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s;
+  }
+
 </style>

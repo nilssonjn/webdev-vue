@@ -1,4 +1,15 @@
 <script setup>
+import { reactive } from 'vue';
+
+const form = reactive({
+    username:"",
+    password:""
+});
+
+const handleSubmit = () => {
+    console.log("Username", form.username);
+    console.log("Password", form.password);
+}
 
 </script>
 
@@ -8,11 +19,11 @@
       <form @submit.prevent="handleSubmit">
         <div>
           <label for="username">Username:</label>
-          <input type="text" id="username" v-model="username" required />
+          <input type="text" id="username" v-model="form.username" required />
         </div>
         <div>
           <label for="password">Password:</label>
-          <input type="password" id="password" v-model="password" required />
+          <input type="password" id="password" v-model="form.password" required />
         </div>
         <button type="submit">Login</button>
       </form>

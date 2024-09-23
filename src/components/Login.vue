@@ -6,8 +6,8 @@ const MAX_CHARS = 15;
 const MIN_LENGTH = 3;
 const MAX_LENGTH = 15;
 
-const validUsername = /^[a-z0-9]{MIN_CHARS,MAX_CHARS}$/i;
-const validPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&_])[A-Za-z\d$@$!%*?&_]{MIN_LENGTH,MAX_LENGTH}$/
+const validUsername = new RegExp (`^[a-z0-9]{${MIN_CHARS},${MAX_CHARS}}$`,'i');
+const validPassword = new RegExp (`^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&_])[A-Za-z\\d$@$!%*?&_]{${MIN_LENGTH},${MAX_LENGTH}}$`);
 
 const form = reactive({
     username:"",
@@ -27,7 +27,8 @@ const handleSubmit = () => {
     }
 
     if (!validPassword.test(form.password)) {
-      form.errors.password = `Password must be ${MIN_LENGTH}-${MAX_LENGTH} characters long.`;
+      form.errors.password = `Password must be ${MIN_LENGTH}-${MAX_LENGTH} characters long. It must contain at least one lowercase letter,
+      uppercase letter, one digit and a special character`;
     }
 };
 

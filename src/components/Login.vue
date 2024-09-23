@@ -1,5 +1,5 @@
 <script setup>
-import { reactive } from 'vue';
+import { reactive, defineProps } from 'vue';
 
 const MIN_CHARS = 3;
 const MAX_CHARS = 15;
@@ -13,7 +13,8 @@ const form = reactive({
     errors: {
       username: "",
       password: ""
-    }
+    },
+    loggedInUser: null,
 });
 
 const handleSubmit = () => {
@@ -27,6 +28,10 @@ const handleSubmit = () => {
     if (!validPassword.test(form.password)) {
       form.errors.password = `Password must be ${MIN_CHARS}-${MAX_CHARS} characters long. It must contain at least one lowercase letter,
       uppercase letter, one digit and a special character`;
+    }
+
+    if (!form.errors.username && !form.errors.password) {
+      form.loggedInUser = form.username;
     }
 };
 
@@ -48,6 +53,9 @@ const handleSubmit = () => {
         </div>
         <button type="submit">Login</button>
       </form>
+      <div v-if="form.loggedInUser" class="loggedInUser">
+        Logged in as: {{ form.loggedInUser }}
+      </div>
     </div>
   </template>
 

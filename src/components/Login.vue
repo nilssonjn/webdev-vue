@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, defineProps } from 'vue';
+import { reactive } from 'vue';
 
 const MIN_CHARS = 3;
 const MAX_CHARS = 15;

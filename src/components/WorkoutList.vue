@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, defineProps } from 'vue';
 
 const newExercise = ref("");
 const exercises = ref([]);
@@ -15,11 +15,18 @@ const removeExercise = (index) => {
     exercises.value.splice(index, 1);
 };
 
+defineProps ({
+  title: {
+    type: String,
+    default: "Your Workout Plan"
+  }
+});
+
 </script>
 
 <template>
     <section>
-      <h2>Your Workout Plan</h2>
+      <h2>{{ title }}</h2>
       <form @submit.prevent="addExercise">
         <input v-model="newExercise" placeholder="Add a new exercise" />
         <button type="submit">Add</button>

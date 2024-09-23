@@ -1,15 +1,35 @@
 <script setup>
 import { reactive } from 'vue';
 
+const MIN_CHARS = 3;
+const MAX_CHARS = 15;
+const MIN_LENGTH = 3;
+const MAX_LENGTH = 15;
+
+const validUsername = /^[a-z0-9]{MIN_CHARS,MAX_CHARS}$/i;
+const validPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&_])[A-Za-z\d$@$!%*?&_]{MIN_LENGTH,MAX_LENGTH}$/
+
 const form = reactive({
     username:"",
-    password:""
+    password:"",
+    errors: {
+      username: "",
+      password: ""
+    }
 });
 
 const handleSubmit = () => {
-    console.log("Username", form.username);
-    console.log("Password", form.password);
-}
+    form.errors.username = "";
+    form.errors.password = "";
+
+    if (!validUsername.test(form.username)) {
+      form.errors.username = `Username must be ${MIN_CHARS}-${MAX_CHARS} characters long and contain only letters and numbers.`;
+    }
+
+    if (!validPassword.test(form.password)) {
+      form.errors.password = `Password must be ${MIN_LENGTH}-${MAX_LENGTH} characters long.`;
+    }
+};
 
 </script>
 
@@ -20,10 +40,12 @@ const handleSubmit = () => {
         <div>
           <label for="username">Username:</label>
           <input type="text" id="username" v-model="form.username" required />
+          <span v-if="form.errors.username" class="error"> {{ form.errors.username }}</span>
         </div>
         <div>
           <label for="password">Password:</label>
           <input type="password" id="password" v-model="form.password" required />
+          <span v-if="form.errors.password" class="error"> {{ form.errors.password }}</span>
         </div>
         <button type="submit">Login</button>
       </form>
@@ -71,5 +93,10 @@ const handleSubmit = () => {
 
 .login-form button:hover {
   background-color: #0056b3;
+}
+
+.error {
+  color: red;
+  font-size: 1rem;
 }
 </style>

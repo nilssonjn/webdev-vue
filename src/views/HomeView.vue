@@ -1,8 +1,17 @@
 <script setup>
-import Login from '@/components/Login.vue';
+import { ref } from 'vue';
 
+const title = ref("Welcome to MyWorkoutsApp");
 </script>
 
 <template>
-    <Login />
+    <div>
+        <h1>{{ title }}</h1>
+    </div>
 </template>
+
+<style>
+h1 {
+    text-align: center;
+}
+</style>

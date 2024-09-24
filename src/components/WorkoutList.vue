@@ -2,17 +2,19 @@
 import { ref, defineProps } from 'vue';
 
 const newExercise = ref("");
-const exercises = ref([]);
+const exercises = ref({
+  exercise: []
+});
 
 const addExercise = () => {
     if(newExercise.value.trim()) {
-        exercises.value.push(newExercise.value.trim());
+        exercises.value.exercise.push(newExercise.value.trim());
         newExercise.value = "";
     }
 };
 
 const removeExercise = (index) => {
-    exercises.value.splice(index, 1);
+    exercises.value.exercise.splice(index, 1);
 };
 
 defineProps ({
@@ -32,7 +34,7 @@ defineProps ({
         <button type="submit">Add</button>
       </form>
       <ul>
-        <li v-for="(exercise, index) in exercises" :key="index">
+        <li v-for="(exercise, index) in exercises.exercise" :key="index">
           {{ exercise }}
           <button @click="removeExercise(index)">Remove</button>
         </li>

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, defineProps } from 'vue';
+import { ref } from 'vue';
 
 const newExercise = ref("");
 const exercises = ref({
@@ -33,7 +33,8 @@ defineProps ({
         <input v-model="newExercise" placeholder="Add a new exercise" />
         <button type="submit">Add</button>
       </form>
-      <ul>
+      <p v-if="exercises.exercise.length === 0">No exercises yet.</p>
+      <ul v-else>
         <li v-for="(exercise, index) in exercises.exercise" :key="index">
           {{ exercise }}
           <button @click="removeExercise(index)">Remove</button>
@@ -43,15 +44,25 @@ defineProps ({
 </template>
 
 <style scoped>
-section, form, input {
+section {
   padding: 10px;
   margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 8px;
   font-size: 16px;
+  flex-grow: 1;
 }
 
 button {
-  margin-left: 10px;
-  padding: 10px;
+  padding: 8px 12px;
   font-size: 16px;
   cursor: pointer;
 }

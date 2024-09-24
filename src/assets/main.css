@@ -21,15 +21,3 @@ body {
   button:hover {
     background-color: #0056b3;
   }
-
-  
-  @media (max-width: 600px) {
-    main {
-      padding: 10px;
-    }
-  
-    input, button {
-      width: 100%;
-      margin: 5px 0;
-    }
-  }  

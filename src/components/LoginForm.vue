@@ -73,6 +73,12 @@ const handleSubmit = () => {
   text-align: center;
 }
 
+.login-form button {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
 .login-form div {
   margin-bottom: 1rem;
 }
@@ -86,20 +92,6 @@ const handleSubmit = () => {
   width: 100%;
   padding: 0.5em;
   box-sizing: border-box;
-}
-
-.login-form button {
-  width: 100%;
-  padding: 0.7em;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.login-form button:hover {
-  background-color: #0056b3;
 }
 
 .error {

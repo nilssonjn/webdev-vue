@@ -64,19 +64,13 @@ const handleSubmit = () => {
   max-width: 300px;
   margin: 0 auto;
   padding: 1rem;
-  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   margin-top: 1rem;
 }
 
 .login-form h2 {
   text-align: center;
-}
-
-.login-form button {
-  padding: 10px;
-  font-size: 16px;
-  cursor: pointer;
 }
 
 .login-form div {

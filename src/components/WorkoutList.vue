@@ -1,22 +1,6 @@
 <script setup>
 import { ref } from 'vue';
 
-const newExercise = ref("");
-const exercises = ref({
-  exercise: []
-});
-
-const addExercise = () => {
-    if(newExercise.value.trim()) {
-        exercises.value.exercise.push(newExercise.value.trim());
-        newExercise.value = "";
-    }
-};
-
-const removeExercise = (index) => {
-    exercises.value.exercise.splice(index, 1);
-};
-
 defineProps ({
   title: {
     type: String,
@@ -24,57 +8,110 @@ defineProps ({
   }
 });
 
+const exercises = ref([
+  {
+    id: 1,
+    title: "Barbell Bench Press",
+    target: "Chest",
+  },
+  {
+    id: 2,
+    title: "Barbell Shoulder Press",
+    target: "Shoulders"
+  }
+]);
+
+const newExercise = ref("");
+const newTarget = ref("");
+
+const addExercise = () => {
+  exercises.value.push(
+    {
+      id: exercises.value.length +1,
+      title: newExercise.value,
+      target: newTarget.value
+    });
+    newExercise.value = "";
+    newTarget.value = "";
+};
+
+const removeExercise = (index) => {
+    exercises.value.splice(index, 1);
+};
+
 </script>
 
 <template>
-    <section>
+    <section class="container">
       <h2>{{ title }}</h2>
-      <form @submit.prevent="addExercise">
-        <input v-model="newExercise" placeholder="Add a new exercise" />
-        <button type="submit">Add</button>
+      <form class="exercise-form" @submit.prevent="addExercise">
+        <input v-model.trim="newExercise" placeholder="Exercise name" />
+        <input v-model.trim="newTarget" placeholder="Target muscle group" />
+        <button type="submit" class="btn-add">Add</button>
       </form>
-      <p v-if="exercises.exercise.length === 0">No exercises yet.</p>
-      <ul v-else>
-        <li v-for="(exercise, index) in exercises.exercise" :key="index">
-          {{ exercise }}
-          <button @click="removeExercise(index)">Remove</button>
+      <p v-if="exercises.length === 0">No exercises yet.</p>
+      <ul v-else class="exercise-list">
+        <li v-for="(exercise, index) in exercises" :key="exercise.id" class="exercise-items">
+          <div>
+            {{ exercise.title }}
+            <p class="exercise-target">Target muscle group: {{ exercise.target }}</p>
+          </div>
+          <button @click="removeExercise(index)" class="btn-remove">Remove</button>
         </li>
       </ul>
     </section>
 </template>
 
 <style scoped>
-section {
-  padding: 10px;
-  margin-bottom: 20px;
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
 }
 
-form {
+h2 {
+  text-align: center;
+}
+
+.exercise-form {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
 }
 
-input {
+.exercise-form input {
+  flex: 1;
   padding: 8px;
-  font-size: 16px;
-  flex-grow: 1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-button {
-  padding: 8px 12px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-ul {
+.exercise-list {
   list-style-type: none;
   padding: 0;
 }
 
-li {
+.exercise-items {
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.exercise-item div {
+  display: flex;
+  flex-direction: column;
+}
+
+.exercise-target {
+  margin: 5px 0 0 0;
+  font-size: 0.9em;
+  color: #666;
 }
 </style>

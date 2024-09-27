@@ -25,14 +25,16 @@ const newExercise = ref("");
 const newTarget = ref("");
 
 const addExercise = () => {
-  exercises.value.push(
-    {
-      id: exercises.value.length +1,
-      title: newExercise.value,
-      target: newTarget.value
-    });
-    newExercise.value = "";
-    newTarget.value = "";
+  if (newExercise.value && newTarget.value) {
+    exercises.value.push(
+      {
+        id: exercises.value.length +1,
+        title: newExercise.value,
+        target: newTarget.value
+      });
+      newExercise.value = "";
+      newTarget.value = "";
+    }
 };
 
 const removeExercise = (index) => {

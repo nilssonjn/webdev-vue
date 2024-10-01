@@ -19,6 +19,8 @@ test("Remove exercise on array index", () => {
     exercises.value.splice(index, 1);
   };
 
+  expect(exercises.value.length).toBe(2);
+
   removeExercise(1);
   expect(exercises.value).toEqual([
     {
@@ -27,4 +29,15 @@ test("Remove exercise on array index", () => {
       target: "Chest",
     },
   ]);
+
+  removeExercise(5);
+  expect(exercises.value).toEqual([
+    {
+      id: 1,
+      title: "Barbell Bench Press",
+      target: "Chest",
+    },
+  ]);
+
+  expect(exercises.value.length).toBe(1);
 });

@@ -1,3 +1,6 @@
+## Extra:
+added Router, views, vitest
+
 # Lab 2: HTML, CSS, and Vue – User Program (e.g., "Tasks", "Workout Schedule", "Leisure Activities", "Weekly Menu")
 
 ## Objectives and Purpose

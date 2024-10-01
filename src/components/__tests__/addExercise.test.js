@@ -1,6 +1,5 @@
 import { expect, it, test } from "vitest";
 import { ref } from "vue";
-import WorkoutList from "../WorkoutList.vue";
 
 test("Remove exercise on array index", () => {
   const exercises = ref([

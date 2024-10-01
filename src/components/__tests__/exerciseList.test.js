@@ -1,4 +1,4 @@
-import { expect, it, test } from "vitest";
+import { expect, test } from "vitest";
 import { ref } from "vue";
 
 test("Remove exercise on array index", () => {

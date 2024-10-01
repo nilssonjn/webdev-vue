@@ -20,7 +20,25 @@ test("removeExercise removes the correct exercise", async () => {
 test("addExercise adds a new exercise", async () => {
   const wrapper = mount(WorkoutList);
 
+  const exerciseInput = wrapper.find("input[id='NewExercise']");
+  const targetInput = wrapper.find("input[id='NewTarget']");
+  const addButton = wrapper.find("button[type='submit']");
 
+  let exercises = wrapper.findAll("li");
+  const initialLength = exercises.length;
 
+  await exerciseInput.setValue("Squats");
+  await targetInput.setValue("Legs");
+
+  await addButton.trigger("submit");
+
+  //show the updated array in the tests
+  console.log(wrapper.vm.exercises);
+
+  exercises = wrapper.findAll("li");
+  
+  expect(exercises.length).toBe(initialLength + 1);
+  expect(exercises[initialLength].text()).toContain("Squats");
+  expect(exercises[initialLength].text()).toContain("Target muscle group: Legs");
 
 });

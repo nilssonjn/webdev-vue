@@ -47,8 +47,8 @@ const removeExercise = (index) => {
     <section class="container">
       <h2>{{ title }}</h2>
       <form class="exercise-form" @submit.prevent="addExercise">
-        <input v-model.trim="newExercise" placeholder="Exercise name" />
-        <input v-model.trim="newTarget" placeholder="Target muscle group" />
+        <input id="NewExercise" v-model.trim="newExercise" placeholder="Exercise name" />
+        <input id="NewTarget" v-model.trim="newTarget" placeholder="Target muscle group" />
         <button type="submit" class="btn-add">Add</button>
       </form>
       <p v-if="exercises.length === 0">No exercises yet.</p>
